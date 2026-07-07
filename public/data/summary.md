@@ -1,10 +1,15 @@
-🤖 **CopyBot Report** — mar, 7 jul., 12:58 a. m.
+🤖 **CopyBot Report** — mar, 7 jul., 12:59 a. m.
 
-💰 Capital: $5,000 | Equity: $4,976.88 | PnL: 🔴 $-23.12
-📊 Win Rate: 25.0% | Open: 96 | Resolved: 4
-👛 Tracking: 0/500 wallets
-📡 Signals: 0 new | 📋 Copied: 0 | 👀 Watch: 0 | ⏭️ Skip: 0
+💰 Capital: $5,000 | Equity: $4,980.05 | PnL: 🔴 $-19.95
+📊 Win Rate: 33.3% | Open: 97 | Resolved: 3
+👛 Tracking: 129/500 wallets
+📡 Signals: 189 new | 📋 Copied: 0 | 👀 Watch: 0 | ⏭️ Skip: 189
 
 🔗 [Dashboard](https://polymarket-copy-bot-phi.vercel.app)
 
-🏆 Best: $27.74 | 🔻 Worst: $-26.29
+🏆 Best: $15.54 | 🔻 Worst: $-17.66
+
+⭐ Top Wallets:
+• AITrader_386 (59%)
+• OtherTrader_400 (57%)
+• WorldTrader_186 (56%)
