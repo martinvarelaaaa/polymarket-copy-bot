@@ -2,7 +2,7 @@
   {
     "date": "2026-07-07",
     "paperPnl": 0,
-    "totalPaperPnl": -0.98,
+    "totalPaperPnl": -0.4,
     "winRate": 0,
     "openPositions": 150,
     "newSignals": 300,
@@ -12,13 +12,13 @@
     "bestWallets": [
       "Theo4",
       "Fredi9999",
-      "swisstony"
+      "kch123"
     ],
     "worstWallets": [
-      "AITrader_89",
-      "WorldTrader_381"
+      "OtherTrader_379",
+      "OtherTrader_286"
     ],
     "ruleChanges": [],
-    "summary": "Seguimiento: 371 wallets. 300 copiadas, 0 saltadas. 0 cambios de reglas totales."
+    "summary": "Seguimiento: 387 wallets. 300 copiadas, 0 saltadas. 0 cambios de reglas totales."
   }
 ]
