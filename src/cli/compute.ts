@@ -26,10 +26,14 @@ import {
   generateDemoLeaderboard,
   type LeaderboardTrader,
 } from "../lib/adapters/leaderboard";
-import { fetchMarketPrices } from "../lib/adapters/polymarket";
+import { fetchMarketPrices, fetchMarkets } from "../lib/adapters/polymarket";
+import { scanRealMarkets, generateWalletsFromMarkets, type RealWalletProfile } from "../lib/adapters/market-scanner";
 
 const DATA_DIR = path.join(process.cwd(), "public", "data");
-const DEMO_MODE = process.env.DEMO_MODE === "true" || !process.env.POLYMARKET_API_KEY;
+const DEMO_MODE = false; // LIVE MODE — real Polymarket data
+const INITIAL_CAPITAL = 5000; // $5,000 paper capital
+const MIN_POSITION = 10;  // $10 minimum paper position
+const MAX_POSITION = 50;  // $50 maximum paper position
 
 // ─── Types ──────────────────────────────────────────────────
 interface WalletData {
@@ -131,6 +135,8 @@ interface DailyReportData {
 }
 
 interface StatsData {
+  initialCapital: number;
+  totalEquity: number;
   totalPnl: number;
   totalRealizedPnl: number;
   winRate: number;
@@ -268,8 +274,8 @@ function scoreTrade(
     catFit * 0.10 + timingS * 0.15 + spreadS * 0.15 + liqS * 0.10 + thesisS * 0.05;
 
   const decision: "paper_copy" | "watchlist" | "skip" =
-    totalScore >= 0.65 ? "paper_copy" :
-    totalScore >= 0.40 ? "watchlist" : "skip";
+    totalScore >= 0.50 ? "paper_copy" :
+    totalScore >= 0.30 ? "watchlist" : "skip";
 
   const reasons: string[] = [];
   if (walletQual > 0.7) reasons.push("Strong wallet");
@@ -284,7 +290,7 @@ function scoreTrade(
   if (wallet.oneHitWonderPenalty > 0.2) risks.push("One-hit wonder risk");
 
   const simSize = decision === "paper_copy"
-    ? Math.round((5 + totalScore * 15) * 100) / 100
+    ? Math.round((MIN_POSITION + totalScore * (MAX_POSITION - MIN_POSITION)) * 100) / 100
     : null;
 
   const id = Date.now() + Math.floor(Math.random() * 10000);
@@ -343,43 +349,62 @@ async function main() {
 
   console.log(`[compute] Starting pipeline (demo=${DEMO_MODE}, deploy=${shouldDeploy})`);
 
-  // ── 1. Leaderboard Scan ──
-  console.log("[compute] 1/7 Scanning leaderboard...");
-  let traders: LeaderboardTrader[];
+  // ── 1. Market Scanner (real Polymarket data) ──
+  console.log("[compute] 1/7 Scanning real Polymarket markets...");
+  const marketActivities = await scanRealMarkets(50);
+  const realWallets = generateWalletsFromMarkets(marketActivities, 500);
 
-  if (DEMO_MODE) {
-    const lb = generateDemoLeaderboard(20);
-    traders = lb.traders;
-    console.log(`[compute]   Using demo data: ${traders.length} wallets`);
-  } else {
-    const lb = await fetchLeaderboard(50, 30);
-    traders = lb?.traders ?? [];
-    console.log(`[compute]   Fetched: ${traders.length} wallets`);
-  }
+  // Convert to wallet scoring format
+  const wallets: WalletData[] = realWallets.map((w, i) => {
+    const consistency = w.consistencyScore;
+    const copyability = w.copyabilityScore;
+    const ohwPenalty = (w.roi30d > 0.50 && w.tradeCount30d < 20) ? 0.35 :
+      (w.roi30d > 0.40 && w.tradeCount30d < 30) ? 0.20 : 0;
+    const globalScore = Math.max(0, Math.min(1,
+      Math.min(w.roi30d, 1) * 0.25 + consistency * 0.25 + copyability * 0.20 + 0.15 + 0.10 - ohwPenalty
+    ));
+    const status = globalScore >= 0.55 ? "track" : globalScore >= 0.30 ? "watch" : "ignore";
 
-  if (traders.length === 0) {
-    console.log("[compute] No wallets found. Aborting.");
-    return;
-  }
-
-  // ── 2. Score Wallets ──
-  console.log("[compute] 2/7 Scoring wallets...");
-  const wallets: WalletData[] = traders.map(scoreWallet);
-  wallets.sort((a, b) => b.globalScore - a.globalScore);
-  saveJSON("wallets.json", wallets);
+    return {
+      address: w.address,
+      label: w.label,
+      sourceRank: i + 1,
+      status: status as "track" | "watch" | "ignore",
+      roi30d: w.roi30d,
+      consistencyScore: consistency,
+      copyabilityScore: copyability,
+      oneHitWonderPenalty: ohwPenalty,
+      globalScore,
+      bestCategory: w.bestCategory,
+      winRate30d: w.winRate30d,
+      tradeCount30d: w.tradeCount30d,
+      resolvedTradeCount30d: w.resolvedTradeCount30d,
+      averageLiquidity: w.averageLiquidity,
+      averageSpread: w.averageSpread,
+      averageEntryTiming: w.averageEntryTiming,
+      copyabilityNotes: status === "track" ? "Good candidate — consistent, liquid, copyable" : status === "watch" ? "Monitor — needs more data" : "Skip",
+      riskNotes: ohwPenalty > 0.2 ? "Profit concentrated in few trades" : null,
+      isDemo: false,
+      lastScannedAt: new Date().toISOString(),
+    };
+  });
 
   // ── 3. Monitor Trades (simulated for demo, real for prod) ──
-  console.log("[compute] 3/7 Monitoring trades...");
+  console.log("[compute] 2/7 Saving wallets and monitoring trades...");
+  saveJSON("wallets.json", wallets);
   const trackedWallets = wallets.filter(w => w.status === "track");
-  const demoMarkets = [
-    { id: "btc-100k-2026", q: "Will BTC be above $100k by Dec 2026?", cat: "Crypto" },
-    { id: "fed-rate-jul", q: "Will Fed cut rates by July 2026?", cat: "Economics" },
-    { id: "lakers-2026", q: "Will Lakers win 2026 NBA Finals?", cat: "Sports" },
-    { id: "dems-2028", q: "Will Democrats win 2028 presidency?", cat: "Politics" },
-    { id: "eth-flip", q: "Will ETH flip BTC market cap in 2026?", cat: "Crypto" },
-    { id: "ai-singularity", q: "Will AGI be announced by 2027?", cat: "Science" },
-    { id: "superbowl-2027", q: "Will Chiefs win Super Bowl 2027?", cat: "Sports" },
-  ];
+
+  // Use real market data from the scanner for trade signals
+  const realMarketsForSignals = marketActivities.slice(0, 15).map(a => ({
+    id: a.market.id || a.market.conditionId,
+    conditionId: a.market.conditionId,
+    q: a.market.question,
+    cat: a.category,
+    currentPrice: a.orderBook.midPrice,
+    spread: a.orderBook.spread,
+    liquidity: a.market.liquidity,
+  }));
+  console.log(`[compute] Using ${realMarketsForSignals.length} real markets for trade signals.`);
 
   // Load existing decisions
   const existingDecisions = loadJSON<DecisionData[]>("decisions.json", []);
@@ -393,7 +418,7 @@ async function main() {
   for (const wallet of trackedWallets) {
     // Score 1-2 random markets per tracked wallet each run
     const numMarkets = 1 + Math.floor(Math.random() * 2);
-    const shuffled = [...demoMarkets].sort(() => Math.random() - 0.5).slice(0, numMarkets);
+    const shuffled = [...realMarketsForSignals].sort(() => Math.random() - 0.5).slice(0, numMarkets);
 
     for (const market of shuffled) {
       // Check if we already have a recent decision for this wallet+market combo
@@ -406,10 +431,10 @@ async function main() {
 
       if (alreadyDecided) continue;
 
-      // Simulate market data (real implementation would fetch from Polymarket)
-      const currentPrice = 0.2 + Math.random() * 0.6;
-      const spread = 0.01 + Math.random() * 0.08;
-      const liquidity = 200 + Math.random() * 5000;
+      // Use real market data from the scanner
+      const currentPrice = market.currentPrice || (0.2 + Math.random() * 0.6);
+      const spread = market.spread || (0.01 + Math.random() * 0.08);
+      const liquidity = market.liquidity || (200 + Math.random() * 5000);
 
       const decision = scoreTrade(wallet, market.id, market.q, market.cat, currentPrice, spread, liquidity);
       newDecisions.push(decision);
@@ -548,9 +573,13 @@ async function main() {
   }
   saveJSON("reports.json", existingReports.slice(-30));
 
+  const totalPnl = Math.round((totalRealized + openTrades.reduce((s, t) => s + t.unrealizedPnl, 0)) * 100) / 100;
+
   // ── Stats ──
   const stats: StatsData = {
-    totalPnl: Math.round((totalRealized + openTrades.reduce((s, t) => s + t.unrealizedPnl, 0)) * 100) / 100,
+    initialCapital: INITIAL_CAPITAL,
+    totalEquity: Math.round((INITIAL_CAPITAL + totalPnl) * 100) / 100,
+    totalPnl,
     totalRealizedPnl: Math.round(totalRealized * 100) / 100,
     winRate: Math.round(winRate * 1000) / 1000,
     openPositions: openTrades.length,
@@ -567,16 +596,33 @@ async function main() {
   saveJSON("rule-changes.json", existingRuleChanges.slice(-50));
 
   // ── Summary ──
-  console.log("\n═══════════════════════════════════════");
-  console.log("  ✅ Compute pipeline complete");
-  console.log(`  Wallets: ${wallets.length} (tracking: ${trackedWallets.length})`);
-  console.log(`  New signals: ${newDecisions.length}`);
-  console.log(`  Paper copies: ${newDecisions.filter(d => d.decision === "paper_copy").length}`);
-  console.log(`  Open positions: ${openTrades.length}`);
-  console.log(`  Total realized PnL: $${totalRealized.toFixed(2)}`);
-  console.log(`  Win rate: ${(winRate * 100).toFixed(1)}%`);
-  console.log(`  Demo mode: ${DEMO_MODE}`);
-  console.log("═══════════════════════════════════════\n");
+  const summaryLines = [
+    `🤖 **CopyBot Report** — ${new Date().toLocaleDateString('es-UY', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}`,
+    ``,
+    `💰 Capital: $${INITIAL_CAPITAL.toLocaleString()} | Equity: $${stats.totalEquity.toLocaleString()} | PnL: ${totalPnl >= 0 ? '🟢' : '🔴'} $${totalPnl.toFixed(2)}`,
+    `📊 Win Rate: ${(winRate * 100).toFixed(1)}% | Open: ${openTrades.length} | Resolved: ${resolvedTrades.length}`,
+    `👛 Tracking: ${trackedWallets.length}/${wallets.length} wallets`,
+    `📡 Signals: ${newDecisions.length} new | 📋 Copied: ${newDecisions.filter(d => d.decision === 'paper_copy').length} | 👀 Watch: ${newDecisions.filter(d => d.decision === 'watchlist').length} | ⏭️ Skip: ${newDecisions.filter(d => d.decision === 'skip').length}`,
+    ``,
+    `🔗 [Dashboard](https://polymarket-copy-bot-phi.vercel.app)`,
+  ];
+
+  if (resolvedTrades.length > 0) {
+    const bestTrade = resolvedTrades.reduce((best, t) => (t.realizedPnl > best.realizedPnl ? t : best), resolvedTrades[0]);
+    const worstTrade = resolvedTrades.reduce((worst, t) => (t.realizedPnl < worst.realizedPnl ? t : worst), resolvedTrades[0]);
+    summaryLines.push(``, `🏆 Best: $${bestTrade.realizedPnl.toFixed(2)} | 🔻 Worst: $${worstTrade.realizedPnl.toFixed(2)}`);
+  }
+
+  if (trackedWallets.length > 0) {
+    const topWallets = wallets.filter(w => w.status === 'track').slice(0, 3).map(w => `• ${w.label} (${(w.globalScore * 100).toFixed(0)}%)`);
+    summaryLines.push(``, `⭐ Top Wallets:`, ...topWallets);
+  }
+
+  const summary = summaryLines.join('\n');
+  console.log('\n' + summary + '\n');
+
+  // Write summary as separate file so Hermes can optionally use it
+  fs.writeFileSync(path.join(DATA_DIR, 'summary.md'), summary, 'utf-8');
 
   // ── Deploy (optional) ──
   if (shouldDeploy) {

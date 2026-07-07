@@ -75,46 +75,47 @@ async function fetchJSON<T>(url: string): Promise<T | null> {
  * GET bullpen.polymarket.com/leaderboard
  */
 export async function fetchLeaderboard(
-  limit = 50,
+  limit = 500,
   lookbackDays = 30
 ): Promise<LeaderboardResponse | null> {
-  const url = `${BULLPEN_API}/leaderboard?limit=${limit}&lookback=${lookbackDays}`;
-  const data = await fetchJSON<{
-    leaderboard?: Array<Record<string, unknown>>;
-    total?: number;
-  }>(url);
+  // Try multiple leaderboard endpoints
+  const endpoints = [
+    `${BULLPEN_API}/leaderboard?limit=${limit}&lookback=${lookbackDays}`,
+    `https://gamma-api.polymarket.com/leaderboard?limit=${limit}`,
+  ];
 
-  if (!data) return null;
+  for (const url of endpoints) {
+    const data = await fetchJSON<{
+      leaderboard?: Array<Record<string, unknown>>;
+      traders?: Array<Record<string, unknown>>;
+      total?: number;
+    }>(url);
 
-  const rawTraders = data.leaderboard ?? [];
+    if (data) {
+      const rawTraders = data.leaderboard ?? data.traders ?? [];
+      if (rawTraders.length > 0) {
+        const traders: LeaderboardTrader[] = rawTraders.map((t, i) => ({
+          walletAddress: (t.walletAddress as string) ?? (t.address as string) ?? `0x${i.toString(16)}`,
+          username: (t.username as string) ?? (t.displayName as string) ?? (t.name as string) ?? `Trader ${i + 1}`,
+          pnl: Number(t.pnl ?? t.profit ?? 0),
+          roi: Number(t.roi ?? t.returnOnInvestment ?? 0),
+          volume: Number(t.volume ?? 0),
+          tradeCount: Number(t.tradeCount ?? t.trades ?? 0),
+          marketsTraded: Number(t.marketsTraded ?? 0),
+          winRate: Number(t.winRate ?? 0),
+          avgPositionSize: Number(t.avgPositionSize ?? 0),
+          isDemo: false,
+          lookbackDays,
+          rank: (t.rank as number) ?? (i + 1),
+        }));
+        return { traders, total: data.total ?? traders.length, lookbackDays, updatedAt: new Date().toISOString(), isDemo: false };
+      }
+    }
+  }
 
-  const traders: LeaderboardTrader[] = rawTraders.map((t, i) => ({
-    walletAddress: (t.walletAddress as string) ?? (t.address as string) ?? "",
-    username:
-      (t.username as string) ??
-      (t.displayName as string) ??
-      (t.name as string) ??
-      `Trader ${i + 1}`,
-    pnl: Number(t.pnl ?? t.profit ?? t.profitLoss ?? 0),
-    roi: Number(t.roi ?? t.returnOnInvestment ?? t.return ?? 0),
-    volume: Number(t.volume ?? t.totalVolume ?? 0),
-    tradeCount: Number(t.tradeCount ?? t.trades ?? t.totalTrades ?? 0),
-    marketsTraded: Number(t.marketsTraded ?? t.markets ?? 0),
-    winRate: Number(t.winRate ?? t.winrate ?? t.winPercentage ?? 0),
-    avgPositionSize: Number(t.avgPositionSize ?? t.averagePositionSize ?? 0),
-    isDemo: false,
-    lookbackDays,
-    rank: (t.rank as number) ?? (i + 1),
-    avatarUrl: t.avatarUrl as string | undefined,
-  }));
-
-  return {
-    traders,
-    total: data.total ?? traders.length,
-    lookbackDays,
-    updatedAt: new Date().toISOString(),
-    isDemo: false,
-  };
+  // No live leaderboard available — generate realistic synthetic wallets
+  console.log("[leaderboard] No live leaderboard API available. Generating synthetic wallets.");
+  return generateDemoLeaderboard(limit);
 }
 
 // ─── Demo Data ───────────────────────────────────────────────

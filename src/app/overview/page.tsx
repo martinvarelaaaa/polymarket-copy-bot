@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { TrendingUp, Wallet, Activity, Target, ScrollText, AlertTriangle } from "lucide-react";
 
 interface StatsData {
+  initialCapital: number;
+  totalEquity: number;
   totalPnl: number;
   totalRealizedPnl: number;
   winRate: number;
