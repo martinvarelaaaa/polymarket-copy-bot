@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 4,
   "active": true,
   "rules": {
     "scoring": {
@@ -12,14 +12,14 @@
       "one_hit_wonder_threshold": 0.6,
       "one_hit_wonder_penalty": 0.4,
       "min_resolved_trades": 5,
-      "track_threshold": 0.7,
+      "track_threshold": 0.73,
       "watch_threshold": 0.4
     },
     "trade_scoring": {
-      "paper_copy_threshold": 0.65,
+      "paper_copy_threshold": 0.62,
       "watchlist_threshold": 0.4,
       "max_spread": 0.08,
-      "min_liquidity": 300,
+      "min_liquidity": 400,
       "max_price_moved": 0.15,
       "max_time_since_entry_ms": 3600000
     },
@@ -29,5 +29,5 @@
       "default_position_size": 10
     }
   },
-  "createdAt": "2026-07-07T04:26:54.569Z"
+  "createdAt": "2026-07-07T16:14:14.154Z"
 }

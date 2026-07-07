@@ -1,23 +1,27 @@
 [
   {
     "date": "2026-07-07",
-    "paperPnl": 0,
-    "totalPaperPnl": -0.43,
-    "winRate": 0,
-    "openPositions": 100,
-    "newSignals": 200,
-    "copiedSignals": 200,
+    "paperPnl": -14.73,
+    "totalPaperPnl": -14.03,
+    "winRate": 0.4,
+    "openPositions": 95,
+    "newSignals": 300,
+    "copiedSignals": 0,
     "watchedSignals": 0,
-    "skippedSignals": 0,
+    "skippedSignals": 300,
     "bestWallets": [
       "Theo4",
       "swisstony",
       "Fredi9999"
     ],
     "worstWallets": [
-      "OtherTrader_43"
+      "OtherTrader_232"
     ],
-    "ruleChanges": [],
-    "summary": "Tracked 385 wallets. 200 copied, 0 skipped."
+    "ruleChanges": [
+      "Win rate bajo — bajando threshold de paper_copy para capturar más señales",
+      "Pérdidas mayores que ganancias — subiendo liquidez mínima requerida",
+      "PnL total negativo — subiendo threshold para seguir wallets (más selectivo)"
+    ],
+    "summary": "Seguimiento: 383 wallets. 0 copiadas, 300 saltadas. 3 cambios de reglas totales."
   }
 ]
