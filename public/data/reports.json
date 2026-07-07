@@ -1,21 +1,21 @@
 [
   {
     "date": "2026-07-07",
-    "paperPnl": 0,
-    "totalPaperPnl": 4.23,
-    "winRate": 0,
-    "openPositions": 100,
+    "paperPnl": -29.82,
+    "totalPaperPnl": -23.12,
+    "winRate": 0.25,
+    "openPositions": 96,
     "newSignals": 200,
     "copiedSignals": 165,
     "watchedSignals": 16,
     "skippedSignals": 19,
-    "bestWallets": [
-      "PoliticsTrader_146",
-      "PoliticsTrader_2",
-      "CryptoTrader_448"
+    "bestWallets": [],
+    "worstWallets": [
+      "WorldTrader_186",
+      "AITrader_269",
+      "WorldTrader_384"
     ],
-    "worstWallets": [],
     "ruleChanges": [],
-    "summary": "Tracked 238 wallets. 165 copied, 19 skipped."
+    "summary": "Tracked 0 wallets. 165 copied, 19 skipped."
   }
 ]
