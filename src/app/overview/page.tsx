@@ -30,32 +30,25 @@ export default function OverviewPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-48 text-zinc-500 text-sm">
-        Loading dashboard...
-      </div>
-    );
-  }
+  if (loading) return <div className="flex items-center justify-center h-48 text-zinc-500 text-sm">Cargando panel...</div>;
 
   if (!stats) {
     return (
       <div className="flex flex-col items-center justify-center h-64 text-zinc-500 text-sm gap-2">
-        <p>No data available.</p>
-        <p>Run <code className="text-emerald-400 bg-zinc-800 px-1.5 py-0.5 rounded">npm run compute</code> first.</p>
+        <p>Sin datos disponibles.</p>
+        <p>Ejecutá <code className="text-emerald-400 bg-zinc-800 px-1.5 py-0.5 rounded">npm run compute</code> primero.</p>
       </div>
     );
   }
 
   return (
     <div className="space-y-4 sm:space-y-6">
-      {/* Demo Banner */}
       {stats.demoMode && (
         <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 sm:p-4 flex items-start sm:items-center gap-3">
           <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5 sm:mt-0" />
           <div className="flex-1 min-w-0">
-            <span className="font-semibold text-amber-400 text-xs uppercase tracking-wide">DEMO MODE</span>
-            <p className="text-amber-400/70 text-xs mt-0.5">Showing simulated data. Set POLYMARKET_API_KEY for real data.</p>
+            <span className="font-semibold text-amber-400 text-xs uppercase tracking-wide">MODO DEMO</span>
+            <p className="text-amber-400/70 text-xs mt-0.5">Datos simulados. Configurá POLYMARKET_API_KEY para datos reales.</p>
           </div>
           <span className="hidden sm:block text-xs text-amber-500/50 whitespace-nowrap ml-4">
             {new Date(stats.lastUpdated).toLocaleString()}
@@ -64,62 +57,51 @@ export default function OverviewPage() {
       )}
 
       <div>
-        <h1 className="text-xl sm:text-2xl font-bold">📊 Paper Trading Dashboard</h1>
-        <p className="text-zinc-500 text-sm mt-1">All data is simulated. No real trades. Not financial advice.</p>
+        <h1 className="text-xl sm:text-2xl font-bold">📊 Panel de Paper Trading</h1>
+        <p className="text-zinc-500 text-sm mt-1">Simulaciones en papel. Sin trades reales. No es asesoramiento financiero.</p>
       </div>
 
-      {/* Key Metrics Row 1 */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4">
-        <MetricCard label="Total PnL" value={`$${stats.totalPnl.toFixed(2)}`} icon={<TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />} color={stats.totalPnl >= 0 ? "emerald" : "red"} />
+        <MetricCard label="PnL Total" value={`$${stats.totalPnl.toFixed(2)}`} icon={<TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />} color={stats.totalPnl >= 0 ? "emerald" : "red"} />
         <MetricCard label="Win Rate" value={`${(stats.winRate * 100).toFixed(1)}%`} icon={<Target className="w-4 h-4 sm:w-5 sm:h-5" />} color="blue" />
-        <MetricCard label="Open Pos." value={String(stats.openPositions)} icon={<Activity className="w-4 h-4 sm:w-5 sm:h-5" />} color="yellow" />
-        <MetricCard label="Tracking" value={String(stats.trackingWallets)} icon={<Wallet className="w-4 h-4 sm:w-5 sm:h-5" />} color="purple" />
+        <MetricCard label="Pos. Abiertas" value={String(stats.openPositions)} icon={<Activity className="w-4 h-4 sm:w-5 sm:h-5" />} color="yellow" />
+        <MetricCard label="Siguiendo" value={String(stats.trackingWallets)} icon={<Wallet className="w-4 h-4 sm:w-5 sm:h-5" />} color="purple" />
       </div>
 
-      {/* Key Metrics Row 2 */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4">
-        <MetricCard label="Today Signals" value={String(stats.todaySignals)} icon={<ScrollText className="w-4 h-4 sm:w-5 sm:h-5" />} color="cyan" />
-        <MetricCard label="Resolved" value={String(stats.totalResolved)} icon={<Target className="w-4 h-4 sm:w-5 sm:h-5" />} color="indigo" />
-        <MetricCard label="Rules" value={`v${stats.activeRuleVersion}`} icon={<ScrollText className="w-4 h-4 sm:w-5 sm:h-5" />} color="orange" />
-        <MetricCard label="Realized PnL" value={`$${stats.totalRealizedPnl.toFixed(2)}`} icon={<TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />} color={stats.totalRealizedPnl >= 0 ? "emerald" : "red"} />
+        <MetricCard label="Señales Hoy" value={String(stats.todaySignals)} icon={<ScrollText className="w-4 h-4 sm:w-5 sm:h-5" />} color="cyan" />
+        <MetricCard label="Resueltos" value={String(stats.totalResolved)} icon={<Target className="w-4 h-4 sm:w-5 sm:h-5" />} color="indigo" />
+        <MetricCard label="Reglas" value={`v${stats.activeRuleVersion}`} icon={<ScrollText className="w-4 h-4 sm:w-5 sm:h-5" />} color="orange" />
+        <MetricCard label="PnL Realizado" value={`$${stats.totalRealizedPnl.toFixed(2)}`} icon={<TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />} color={stats.totalRealizedPnl >= 0 ? "emerald" : "red"} />
       </div>
 
-      {/* Capital status */}
       <div className="grid grid-cols-2 gap-2.5 sm:gap-4">
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 sm:p-4">
-          <div className="text-xs text-zinc-500 uppercase tracking-wide">Paper Capital</div>
+          <div className="text-xs text-zinc-500 uppercase tracking-wide">Capital en Papel</div>
           <div className="text-xl sm:text-2xl font-bold mt-1">${stats.initialCapital.toLocaleString()}</div>
         </div>
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3 sm:p-4">
-          <div className="text-xs text-zinc-500 uppercase tracking-wide">Current Equity</div>
+          <div className="text-xs text-zinc-500 uppercase tracking-wide">Capital Actual</div>
           <div className={`text-xl sm:text-2xl font-bold mt-1 ${stats.totalEquity >= stats.initialCapital ? "text-emerald-400" : "text-red-400"}`}>
             ${stats.totalEquity.toLocaleString()}
           </div>
         </div>
       </div>
 
-      {/* Safety Notice */}
       <div className="bg-zinc-900 border border-emerald-900/50 rounded-xl p-4 sm:p-6">
-        <h2 className="text-base sm:text-lg font-semibold text-emerald-400 mb-1.5">🔒 Version 1 — Paper Trading Only</h2>
+        <h2 className="text-base sm:text-lg font-semibold text-emerald-400 mb-1.5">🔒 Versión 1 — Solo Paper Trading</h2>
         <div className="text-xs sm:text-sm text-zinc-400 space-y-0.5">
-          <p>✅ No real trades can be placed</p>
-          <p>✅ No private keys stored or requested</p>
-          <p>✅ All positions simulated ($5–$20)</p>
-          <p>✅ Self-improving rules based on paper performance</p>
-          <p className="text-zinc-600 mt-2">Real execution only after paper trading proves a consistent edge.</p>
+          <p>✅ No se ejecutan operaciones reales</p>
+          <p>✅ No se almacenan ni solicitan claves privadas</p>
+          <p>✅ Todas las posiciones son simuladas ($5–$20)</p>
+          <p>✅ Reglas auto-mejorables basadas en rendimiento en papel</p>
+          <p className="text-zinc-600 mt-2">La ejecución real solo se habilitará cuando el paper trading demuestre un edge consistente.</p>
         </div>
       </div>
 
-      {/* Mobile-only timestamp */}
-      <p className="text-xs text-zinc-600 text-right sm:hidden">
-        {new Date(stats.lastUpdated).toLocaleString()}
-      </p>
-
-      {/* Desktop timestamp */}
+      <p className="text-xs text-zinc-600 text-right sm:hidden">{new Date(stats.lastUpdated).toLocaleString()}</p>
       {!stats.demoMode && (
-        <p className="hidden sm:block text-xs text-zinc-600 text-right">
-          Last updated: {new Date(stats.lastUpdated).toLocaleString()}
-        </p>
+        <p className="hidden sm:block text-xs text-zinc-600 text-right">Última actualización: {new Date(stats.lastUpdated).toLocaleString()}</p>
       )}
     </div>
   );
