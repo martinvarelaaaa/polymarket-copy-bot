@@ -2,7 +2,7 @@
   {
     "date": "2026-07-07",
     "paperPnl": 0,
-    "totalPaperPnl": 5.73,
+    "totalPaperPnl": 0.72,
     "winRate": 0,
     "openPositions": 100,
     "newSignals": 200,
@@ -15,10 +15,10 @@
       "Fredi9999"
     ],
     "worstWallets": [
-      "WorldTrader_168",
-      "WorldTrader_384"
+      "WorldTrader_333",
+      "AITrader_182"
     ],
     "ruleChanges": [],
-    "summary": "Tracked 394 wallets. 200 copied, 0 skipped."
+    "summary": "Tracked 379 wallets. 200 copied, 0 skipped."
   }
 ]
