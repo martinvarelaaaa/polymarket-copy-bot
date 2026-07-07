@@ -2,7 +2,7 @@
   {
     "date": "2026-07-07",
     "paperPnl": 0,
-    "totalPaperPnl": -0.21,
+    "totalPaperPnl": 0.95,
     "winRate": 0,
     "openPositions": 100,
     "newSignals": 200,
@@ -16,6 +16,6 @@
     ],
     "worstWallets": [],
     "ruleChanges": [],
-    "summary": "Tracked 378 wallets. 200 copied, 0 skipped."
+    "summary": "Tracked 386 wallets. 200 copied, 0 skipped."
   }
 ]
