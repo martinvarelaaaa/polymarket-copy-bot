@@ -1,13 +1,13 @@
-🤖 **CopyBot Report** — mar, 7 jul., 01:26 a. m.
+🤖 **CopyBot Report** — mar, 7 jul., 02:47 a. m.
 
-💰 Capital: $5,000 | Equity: $4,997.52 | PnL: 🔴 $-2.48
+💰 Capital: $5,000 | Equity: $4,999.79 | PnL: 🔴 $-0.21
 📊 Win Rate: 0.0% | Open: 100 | Resolved: 0
-👛 Tracking: 394/500 wallets
-📡 Signals: 580 new | 📋 Copied: 561 | 👀 Watch: 19 | ⏭️ Skip: 0
+👛 Tracking: 378/500 wallets
+📡 Signals: 564 new | 📋 Copied: 555 | 👀 Watch: 9 | ⏭️ Skip: 0
 
 🔗 [Dashboard](https://polymarket-copy-bot-phi.vercel.app)
 
 ⭐ Top Wallets:
-• Theo4 (74%)
-• swisstony (55%)
+• Theo4 (75%)
+• swisstony (56%)
 • Fredi9999 (63%)
