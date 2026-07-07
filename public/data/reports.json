@@ -1,10 +1,10 @@
 [
   {
     "date": "2026-07-07",
-    "paperPnl": -14.73,
-    "totalPaperPnl": -14.03,
-    "winRate": 0.4,
-    "openPositions": 95,
+    "paperPnl": 0,
+    "totalPaperPnl": 0,
+    "winRate": 0,
+    "openPositions": 0,
     "newSignals": 300,
     "copiedSignals": 0,
     "watchedSignals": 0,
@@ -15,13 +15,9 @@
       "Fredi9999"
     ],
     "worstWallets": [
-      "OtherTrader_232"
+      "AITrader_296"
     ],
-    "ruleChanges": [
-      "Win rate bajo — bajando threshold de paper_copy para capturar más señales",
-      "Pérdidas mayores que ganancias — subiendo liquidez mínima requerida",
-      "PnL total negativo — subiendo threshold para seguir wallets (más selectivo)"
-    ],
-    "summary": "Seguimiento: 383 wallets. 0 copiadas, 300 saltadas. 3 cambios de reglas totales."
+    "ruleChanges": [],
+    "summary": "Seguimiento: 390 wallets. 0 copiadas, 300 saltadas. 0 cambios de reglas totales."
   }
 ]
