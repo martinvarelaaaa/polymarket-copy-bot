@@ -2,7 +2,7 @@
   {
     "date": "2026-07-07",
     "paperPnl": 0,
-    "totalPaperPnl": 2.37,
+    "totalPaperPnl": -2.48,
     "winRate": 0,
     "openPositions": 100,
     "newSignals": 200,
@@ -11,14 +11,15 @@
     "skippedSignals": 0,
     "bestWallets": [
       "Theo4",
-      "Fredi9999",
-      "kch123"
+      "swisstony",
+      "Fredi9999"
     ],
     "worstWallets": [
-      "WorldTrader_477",
-      "WorldTrader_432"
+      "AITrader_311",
+      "AITrader_80",
+      "AITrader_398"
     ],
     "ruleChanges": [],
-    "summary": "Tracked 395 wallets. 200 copied, 0 skipped."
+    "summary": "Tracked 394 wallets. 200 copied, 0 skipped."
   }
 ]
