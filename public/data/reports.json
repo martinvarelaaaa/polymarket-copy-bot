@@ -1,10 +1,10 @@
 [
   {
     "date": "2026-07-07",
-    "paperPnl": 10.13,
-    "totalPaperPnl": 8.56,
-    "winRate": 1,
-    "openPositions": 149,
+    "paperPnl": 0,
+    "totalPaperPnl": 1.94,
+    "winRate": 0,
+    "openPositions": 150,
     "newSignals": 300,
     "copiedSignals": 300,
     "watchedSignals": 0,
@@ -12,12 +12,13 @@
     "bestWallets": [
       "Theo4",
       "Fredi9999",
-      "kch123"
+      "swisstony"
     ],
     "worstWallets": [
-      "OtherTrader_91"
+      "OtherTrader_184",
+      "OtherTrader_478"
     ],
     "ruleChanges": [],
-    "summary": "Seguimiento: 387 wallets. 300 copiadas, 0 saltadas. 0 cambios de reglas totales."
+    "summary": "Seguimiento: 379 wallets. 300 copiadas, 0 saltadas. 0 cambios de reglas totales."
   }
 ]
