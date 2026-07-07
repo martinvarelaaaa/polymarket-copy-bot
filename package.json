@@ -3,21 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "compute": "npx tsx src/cli/compute.ts",
+    "compute:deploy": "npx tsx src/cli/compute.ts --deploy",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:migrate": "npx drizzle-kit push",
-    "db:generate": "npx drizzle-kit generate",
-    "seed": "npx tsx src/cli/seed.ts",
-    "scan:leaderboard": "npx tsx src/cli/scan-leaderboard.ts",
-    "scan:wallets": "npx tsx src/cli/scan-wallets.ts",
-    "monitor:trades": "npx tsx src/cli/monitor-trades.ts",
-    "score:trades": "npx tsx src/cli/score-trades.ts",
-    "paper:update-pnl": "npx tsx src/cli/paper-update-pnl.ts",
-    "review:outcomes": "npx tsx src/cli/review-outcomes.ts",
-    "update:rules": "npx tsx src/cli/update-rules.ts",
-    "report:daily": "npx tsx src/cli/report-daily.ts",
     "test": "echo \"Tests not yet implemented. Run after building.\""
   },
   "dependencies": {
