@@ -2,7 +2,7 @@
   {
     "date": "2026-07-07",
     "paperPnl": 0,
-    "totalPaperPnl": -3.24,
+    "totalPaperPnl": 4.23,
     "winRate": 0,
     "openPositions": 100,
     "newSignals": 200,
@@ -10,12 +10,12 @@
     "watchedSignals": 16,
     "skippedSignals": 19,
     "bestWallets": [
-      "AlphaWhale_436",
-      "AlphaWhale_166",
-      "AlphaWhale_496"
+      "PoliticsTrader_146",
+      "PoliticsTrader_2",
+      "CryptoTrader_448"
     ],
     "worstWallets": [],
     "ruleChanges": [],
-    "summary": "Tracked 321 wallets. 165 copied, 19 skipped."
+    "summary": "Tracked 238 wallets. 165 copied, 19 skipped."
   }
 ]
