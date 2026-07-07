@@ -2,20 +2,20 @@
   {
     "date": "2026-07-07",
     "paperPnl": 0,
-    "totalPaperPnl": -0.17,
+    "totalPaperPnl": -3.24,
     "winRate": 0,
-    "openPositions": 13,
-    "newSignals": 20,
-    "copiedSignals": 13,
-    "watchedSignals": 5,
-    "skippedSignals": 2,
+    "openPositions": 100,
+    "newSignals": 200,
+    "copiedSignals": 165,
+    "watchedSignals": 16,
+    "skippedSignals": 19,
     "bestWallets": [
-      "AlphaWhale_1",
-      "AlphaWhale_16",
-      "BetMaster_2"
+      "AlphaWhale_436",
+      "AlphaWhale_166",
+      "AlphaWhale_496"
     ],
     "worstWallets": [],
     "ruleChanges": [],
-    "summary": "DEMO: Paper trading simulation. No real trades."
+    "summary": "Tracked 321 wallets. 165 copied, 19 skipped."
   }
 ]
