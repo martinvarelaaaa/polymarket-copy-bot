@@ -1,0 +1,530 @@
+[
+  {
+    "id": 1783394821329,
+    "walletAddress": "0xDEMO_0000",
+    "marketId": "eth-flip",
+    "marketQuestion": "Will ETH flip BTC market cap in 2026?",
+    "decision": "paper_copy",
+    "copyScore": 0.718,
+    "confidence": 0.787,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity"
+    ],
+    "risks": [
+      "Wide spread risk"
+    ],
+    "walletQualityScore": 0.923,
+    "roiScore": 1,
+    "consistencyScore": 0.891,
+    "copyabilityScore": 0.918,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.458,
+    "spreadScore": 0.235,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 15.77,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394821504,
+    "walletAddress": "0xDEMO_0000",
+    "marketId": "btc-100k-2026",
+    "marketQuestion": "Will BTC be above $100k by Dec 2026?",
+    "decision": "paper_copy",
+    "copyScore": 0.746,
+    "confidence": 0.799,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity"
+    ],
+    "risks": [
+      "Wide spread risk"
+    ],
+    "walletQualityScore": 0.923,
+    "roiScore": 1,
+    "consistencyScore": 0.891,
+    "copyabilityScore": 0.918,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.458,
+    "spreadScore": 0.422,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 16.19,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394822147,
+    "walletAddress": "0xDEMO_0015",
+    "marketId": "btc-100k-2026",
+    "marketQuestion": "Will BTC be above $100k by Dec 2026?",
+    "decision": "paper_copy",
+    "copyScore": 0.791,
+    "confidence": 0.816,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity",
+      "Good entry timing"
+    ],
+    "risks": [
+      "Wide spread risk"
+    ],
+    "walletQualityScore": 0.901,
+    "roiScore": 1,
+    "consistencyScore": 0.888,
+    "copyabilityScore": 0.836,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.779,
+    "spreadScore": 0.474,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 16.86,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394818971,
+    "walletAddress": "0xDEMO_0001",
+    "marketId": "eth-flip",
+    "marketQuestion": "Will ETH flip BTC market cap in 2026?",
+    "decision": "paper_copy",
+    "copyScore": 0.76,
+    "confidence": 0.804,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity"
+    ],
+    "risks": [],
+    "walletQualityScore": 0.855,
+    "roiScore": 0.923,
+    "consistencyScore": 0.872,
+    "copyabilityScore": 0.904,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.471,
+    "spreadScore": 0.639,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 16.39,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394827982,
+    "walletAddress": "0xDEMO_0001",
+    "marketId": "superbowl-2027",
+    "marketQuestion": "Will Chiefs win Super Bowl 2027?",
+    "decision": "paper_copy",
+    "copyScore": 0.7,
+    "confidence": 0.78,
+    "reasons": [
+      "Strong wallet"
+    ],
+    "risks": [],
+    "walletQualityScore": 0.855,
+    "roiScore": 0.923,
+    "consistencyScore": 0.872,
+    "copyabilityScore": 0.904,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.471,
+    "spreadScore": 0.527,
+    "liquidityScore": 0.577,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 15.51,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394822689,
+    "walletAddress": "0xDEMO_0017",
+    "marketId": "dems-2028",
+    "marketQuestion": "Will Democrats win 2028 presidency?",
+    "decision": "paper_copy",
+    "copyScore": 0.722,
+    "confidence": 0.789,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity",
+      "Good entry timing"
+    ],
+    "risks": [
+      "Wide spread risk"
+    ],
+    "walletQualityScore": 0.829,
+    "roiScore": 0.87,
+    "consistencyScore": 0.86,
+    "copyabilityScore": 0.855,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.717,
+    "spreadScore": 0.247,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 15.84,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394827074,
+    "walletAddress": "0xDEMO_0017",
+    "marketId": "lakers-2026",
+    "marketQuestion": "Will Lakers win 2026 NBA Finals?",
+    "decision": "paper_copy",
+    "copyScore": 0.74,
+    "confidence": 0.796,
+    "reasons": [
+      "Strong wallet",
+      "Good entry timing"
+    ],
+    "risks": [],
+    "walletQualityScore": 0.829,
+    "roiScore": 0.87,
+    "consistencyScore": 0.86,
+    "copyabilityScore": 0.855,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.717,
+    "spreadScore": 0.684,
+    "liquidityScore": 0.524,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 16.11,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394819330,
+    "walletAddress": "0xDEMO_0002",
+    "marketId": "lakers-2026",
+    "marketQuestion": "Will Lakers win 2026 NBA Finals?",
+    "decision": "paper_copy",
+    "copyScore": 0.654,
+    "confidence": 0.761,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity"
+    ],
+    "risks": [
+      "Wide spread risk"
+    ],
+    "walletQualityScore": 0.817,
+    "roiScore": 0.83,
+    "consistencyScore": 0.852,
+    "copyabilityScore": 0.859,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.453,
+    "spreadScore": 0.094,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 14.81,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394824617,
+    "walletAddress": "0xDEMO_0018",
+    "marketId": "ai-singularity",
+    "marketQuestion": "Will AGI be announced by 2027?",
+    "decision": "paper_copy",
+    "copyScore": 0.685,
+    "confidence": 0.774,
+    "reasons": [
+      "Strong wallet"
+    ],
+    "risks": [
+      "Low liquidity risk"
+    ],
+    "walletQualityScore": 0.81,
+    "roiScore": 0.789,
+    "consistencyScore": 0.846,
+    "copyabilityScore": 0.884,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.543,
+    "spreadScore": 0.68,
+    "liquidityScore": 0.33,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 15.27,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394819766,
+    "walletAddress": "0xDEMO_0016",
+    "marketId": "ai-singularity",
+    "marketQuestion": "Will AGI be announced by 2027?",
+    "decision": "skip",
+    "copyScore": 0.2,
+    "confidence": 0.9,
+    "reasons": [
+      "Spread too wide (>8%)"
+    ],
+    "risks": [
+      "Spread: 8.5%"
+    ],
+    "walletQualityScore": 0.808,
+    "roiScore": 0.62,
+    "consistencyScore": 0.872,
+    "copyabilityScore": 0.674,
+    "categoryFitScore": 0.5,
+    "entryTimingScore": 0.2,
+    "spreadScore": 0.3,
+    "liquidityScore": 0.5,
+    "thesisScore": 0.4,
+    "simulatedPositionSize": null,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394820360,
+    "walletAddress": "0xDEMO_0003",
+    "marketId": "ai-singularity",
+    "marketQuestion": "Will AGI be announced by 2027?",
+    "decision": "paper_copy",
+    "copyScore": 0.758,
+    "confidence": 0.803,
+    "reasons": [
+      "Strong wallet",
+      "Tight spread",
+      "Good liquidity"
+    ],
+    "risks": [],
+    "walletQualityScore": 0.803,
+    "roiScore": 0.766,
+    "consistencyScore": 0.841,
+    "copyabilityScore": 0.881,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.442,
+    "spreadScore": 0.849,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 16.37,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394818922,
+    "walletAddress": "0xDEMO_0004",
+    "marketId": "dems-2028",
+    "marketQuestion": "Will Democrats win 2028 presidency?",
+    "decision": "watchlist",
+    "copyScore": 0.586,
+    "confidence": 0.734,
+    "reasons": [
+      "Strong wallet"
+    ],
+    "risks": [
+      "Wide spread risk",
+      "Low liquidity risk"
+    ],
+    "walletQualityScore": 0.749,
+    "roiScore": 0.722,
+    "consistencyScore": 0.838,
+    "copyabilityScore": 0.669,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.558,
+    "spreadScore": 0.334,
+    "liquidityScore": 0.217,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": null,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394827199,
+    "walletAddress": "0xDEMO_0006",
+    "marketId": "fed-rate-jul",
+    "marketQuestion": "Will Fed cut rates by July 2026?",
+    "decision": "paper_copy",
+    "copyScore": 0.656,
+    "confidence": 0.762,
+    "reasons": [
+      "Strong wallet",
+      "Tight spread"
+    ],
+    "risks": [
+      "Low liquidity risk"
+    ],
+    "walletQualityScore": 0.746,
+    "roiScore": 0.609,
+    "consistencyScore": 0.818,
+    "copyabilityScore": 0.823,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.403,
+    "spreadScore": 0.855,
+    "liquidityScore": 0.349,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 14.83,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394821992,
+    "walletAddress": "0xDEMO_0019",
+    "marketId": "fed-rate-jul",
+    "marketQuestion": "Will Fed cut rates by July 2026?",
+    "decision": "watchlist",
+    "copyScore": 0.634,
+    "confidence": 0.754,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity"
+    ],
+    "risks": [
+      "Wide spread risk"
+    ],
+    "walletQualityScore": 0.735,
+    "roiScore": 0.705,
+    "consistencyScore": 0.835,
+    "copyabilityScore": 0.626,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.435,
+    "spreadScore": 0.313,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": null,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394824733,
+    "walletAddress": "0xDEMO_0019",
+    "marketId": "btc-100k-2026",
+    "marketQuestion": "Will BTC be above $100k by Dec 2026?",
+    "decision": "paper_copy",
+    "copyScore": 0.716,
+    "confidence": 0.786,
+    "reasons": [
+      "Strong wallet",
+      "Tight spread",
+      "Good liquidity"
+    ],
+    "risks": [],
+    "walletQualityScore": 0.735,
+    "roiScore": 0.705,
+    "consistencyScore": 0.835,
+    "copyabilityScore": 0.626,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.435,
+    "spreadScore": 0.856,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 15.73,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394823549,
+    "walletAddress": "0xDEMO_0007",
+    "marketId": "eth-flip",
+    "marketQuestion": "Will ETH flip BTC market cap in 2026?",
+    "decision": "watchlist",
+    "copyScore": 0.612,
+    "confidence": 0.745,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity"
+    ],
+    "risks": [
+      "Wide spread risk"
+    ],
+    "walletQualityScore": 0.732,
+    "roiScore": 0.597,
+    "consistencyScore": 0.815,
+    "copyabilityScore": 0.771,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.558,
+    "spreadScore": 0.037,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": null,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394822934,
+    "walletAddress": "0xDEMO_0007",
+    "marketId": "ai-singularity",
+    "marketQuestion": "Will AGI be announced by 2027?",
+    "decision": "watchlist",
+    "copyScore": 0.614,
+    "confidence": 0.746,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity"
+    ],
+    "risks": [
+      "Wide spread risk"
+    ],
+    "walletQualityScore": 0.732,
+    "roiScore": 0.597,
+    "consistencyScore": 0.815,
+    "copyabilityScore": 0.771,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.558,
+    "spreadScore": 0.048,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": null,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394823049,
+    "walletAddress": "0xDEMO_0008",
+    "marketId": "dems-2028",
+    "marketQuestion": "Will Democrats win 2028 presidency?",
+    "decision": "skip",
+    "copyScore": 0.2,
+    "confidence": 0.9,
+    "reasons": [
+      "Spread too wide (>8%)"
+    ],
+    "risks": [
+      "Spread: 8.7%"
+    ],
+    "walletQualityScore": 0.719,
+    "roiScore": 0.21,
+    "consistencyScore": 0.802,
+    "copyabilityScore": 0.831,
+    "categoryFitScore": 0.5,
+    "entryTimingScore": 0.2,
+    "spreadScore": 0.3,
+    "liquidityScore": 0.5,
+    "thesisScore": 0.4,
+    "simulatedPositionSize": null,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394818596,
+    "walletAddress": "0xDEMO_0005",
+    "marketId": "fed-rate-jul",
+    "marketQuestion": "Will Fed cut rates by July 2026?",
+    "decision": "paper_copy",
+    "copyScore": 0.661,
+    "confidence": 0.764,
+    "reasons": [
+      "Strong wallet",
+      "Tight spread"
+    ],
+    "risks": [],
+    "walletQualityScore": 0.704,
+    "roiScore": 0.671,
+    "consistencyScore": 0.693,
+    "copyabilityScore": 0.691,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.466,
+    "spreadScore": 0.864,
+    "liquidityScore": 0.55,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": 14.91,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  },
+  {
+    "id": 1783394827302,
+    "walletAddress": "0xDEMO_0005",
+    "marketId": "superbowl-2027",
+    "marketQuestion": "Will Chiefs win Super Bowl 2027?",
+    "decision": "watchlist",
+    "copyScore": 0.623,
+    "confidence": 0.749,
+    "reasons": [
+      "Strong wallet",
+      "Good liquidity"
+    ],
+    "risks": [
+      "Wide spread risk"
+    ],
+    "walletQualityScore": 0.704,
+    "roiScore": 0.671,
+    "consistencyScore": 0.693,
+    "copyabilityScore": 0.691,
+    "categoryFitScore": 0.6,
+    "entryTimingScore": 0.466,
+    "spreadScore": 0.311,
+    "liquidityScore": 1,
+    "thesisScore": 0.7,
+    "simulatedPositionSize": null,
+    "createdAt": "2026-07-07T03:26:58.379Z"
+  }
+]

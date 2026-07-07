@@ -1,0 +1,21 @@
+[
+  {
+    "date": "2026-07-07",
+    "paperPnl": 0,
+    "totalPaperPnl": -0.17,
+    "winRate": 0,
+    "openPositions": 13,
+    "newSignals": 20,
+    "copiedSignals": 13,
+    "watchedSignals": 5,
+    "skippedSignals": 2,
+    "bestWallets": [
+      "AlphaWhale_1",
+      "AlphaWhale_16",
+      "BetMaster_2"
+    ],
+    "worstWallets": [],
+    "ruleChanges": [],
+    "summary": "DEMO: Paper trading simulation. No real trades."
+  }
+]

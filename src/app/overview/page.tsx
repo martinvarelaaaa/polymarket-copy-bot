@@ -1,24 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { TrendingUp, Wallet, Activity, Target, ScrollText } from "lucide-react";
+import { TrendingUp, Wallet, Activity, Target, ScrollText, AlertTriangle } from "lucide-react";
 
-interface Stats {
+interface StatsData {
   totalPnl: number;
+  totalRealizedPnl: number;
   winRate: number;
   openPositions: number;
   totalResolved: number;
   trackingWallets: number;
   todaySignals: number;
   activeRuleVersion: number;
+  demoMode: boolean;
+  lastUpdated: string;
 }
 
 export default function OverviewPage() {
-  const [stats, setStats] = useState<Stats | null>(null);
+  const [stats, setStats] = useState<StatsData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/stats")
+    fetch("/data/stats.json")
       .then((r) => r.json())
       .then(setStats)
       .catch(console.error)
@@ -33,8 +36,32 @@ export default function OverviewPage() {
     );
   }
 
+  if (!stats) {
+    return (
+      <div className="flex items-center justify-center h-64 text-zinc-500">
+        No data available. Run <code className="mx-1 text-emerald-400">npm run compute</code> first.
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-6">
+      {/* Demo Mode Banner */}
+      {stats.demoMode && (
+        <div className="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4 flex items-center gap-3">
+          <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0" />
+          <div>
+            <span className="font-semibold text-amber-400 text-sm uppercase tracking-wide">DEMO MODE</span>
+            <p className="text-amber-400/70 text-xs mt-0.5">
+              Showing simulated data. Set POLYMARKET_API_KEY to use real data.
+            </p>
+          </div>
+          <span className="ml-auto text-xs text-amber-500/50">
+            Updated {new Date(stats.lastUpdated).toLocaleString()}
+          </span>
+        </div>
+      )}
+
       <div>
         <h1 className="text-2xl font-bold">📊 Paper Trading Dashboard</h1>
         <p className="text-zinc-500 mt-1">
@@ -46,25 +73,25 @@ export default function OverviewPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <MetricCard
           label="Total Paper PnL"
-          value={stats ? `$${stats.totalPnl.toFixed(2)}` : "—"}
+          value={`$${stats.totalPnl.toFixed(2)}`}
           icon={<TrendingUp className="w-5 h-5" />}
-          color={stats && stats.totalPnl >= 0 ? "emerald" : "red"}
+          color={stats.totalPnl >= 0 ? "emerald" : "red"}
         />
         <MetricCard
           label="Win Rate"
-          value={stats ? `${(stats.winRate * 100).toFixed(1)}%` : "—"}
+          value={`${(stats.winRate * 100).toFixed(1)}%`}
           icon={<Target className="w-5 h-5" />}
           color="blue"
         />
         <MetricCard
           label="Open Positions"
-          value={stats ? String(stats.openPositions) : "—"}
+          value={String(stats.openPositions)}
           icon={<Activity className="w-5 h-5" />}
           color="yellow"
         />
         <MetricCard
           label="Tracking Wallets"
-          value={stats ? String(stats.trackingWallets) : "—"}
+          value={String(stats.trackingWallets)}
           icon={<Wallet className="w-5 h-5" />}
           color="purple"
         />
@@ -74,29 +101,28 @@ export default function OverviewPage() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <MetricCard
           label="Today's Signals"
-          value={stats ? String(stats.todaySignals) : "—"}
+          value={String(stats.todaySignals)}
           icon={<ScrollText className="w-5 h-5" />}
           color="cyan"
         />
         <MetricCard
           label="Resolved Trades"
-          value={stats ? String(stats.totalResolved) : "—"}
+          value={String(stats.totalResolved)}
           icon={<Target className="w-5 h-5" />}
           color="indigo"
         />
         <MetricCard
           label="Active Rule Version"
-          value={stats ? `v${stats.activeRuleVersion}` : "—"}
+          value={`v${stats.activeRuleVersion}`}
           icon={<ScrollText className="w-5 h-5" />}
           color="orange"
         />
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1">
-          <span className="text-xs text-zinc-500 uppercase tracking-wide">Safety Mode</span>
-          <span className="text-lg font-bold text-emerald-400 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            PAPER ONLY
-          </span>
-        </div>
+        <MetricCard
+          label="Realized PnL"
+          value={`$${stats.totalRealizedPnl.toFixed(2)}`}
+          icon={<TrendingUp className="w-5 h-5" />}
+          color={stats.totalRealizedPnl >= 0 ? "emerald" : "red"}
+        />
       </div>
 
       {/* Status Banner */}
@@ -114,6 +140,13 @@ export default function OverviewPage() {
           </p>
         </div>
       </div>
+
+      {/* Last Updated */}
+      {!stats.demoMode && (
+        <p className="text-xs text-zinc-600 text-right">
+          Last updated: {new Date(stats.lastUpdated).toLocaleString()}
+        </p>
+      )}
     </div>
   );
 }
