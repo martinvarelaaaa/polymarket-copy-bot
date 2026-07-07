@@ -1,5 +1,35 @@
 [
   {
+    "id": 1783454083558,
+    "oldVersion": 4,
+    "newVersion": 5,
+    "changedBy": "hermes-auto",
+    "reason": "Win rate bajo — bajando threshold de paper_copy para capturar más señales",
+    "evidenceSummary": "Win rate: 17%. Threshold baja para no perder oportunidades.",
+    "expectedImprovement": "Más señales capturadas, monitorear si mejora el win rate",
+    "createdAt": "2026-07-07T19:54:43.272Z"
+  },
+  {
+    "id": 1783454083577,
+    "oldVersion": 5,
+    "newVersion": 6,
+    "changedBy": "hermes-auto",
+    "reason": "Pérdidas mayores que ganancias — subiendo liquidez mínima requerida",
+    "evidenceSummary": "Avg Win: +$5.92 vs Avg Loss: $-5.79",
+    "expectedImprovement": "Filtrar mercados con poca liquidez debería reducir pérdidas grandes",
+    "createdAt": "2026-07-07T19:54:43.272Z"
+  },
+  {
+    "id": 1783454083525,
+    "oldVersion": 6,
+    "newVersion": 7,
+    "changedBy": "hermes-auto",
+    "reason": "PnL total negativo — subiendo threshold para seguir wallets (más selectivo)",
+    "evidenceSummary": "PnL total: $-115.19. Solo wallets con score > 73% → > 75%",
+    "expectedImprovement": "Menos wallets seguidas, solo las más consistentes",
+    "createdAt": "2026-07-07T19:54:43.272Z"
+  },
+  {
     "id": 1783452167215,
     "oldVersion": 1,
     "newVersion": 2,
