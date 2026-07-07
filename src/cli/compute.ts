@@ -28,6 +28,7 @@ import {
 } from "../lib/adapters/leaderboard";
 import { fetchMarketPrices, fetchMarkets } from "../lib/adapters/polymarket";
 import { scanRealMarkets, generateWalletsFromMarkets, type RealWalletProfile } from "../lib/adapters/market-scanner";
+import { LEADERBOARD_DATA, scrapedToWallets } from "../lib/adapters/leaderboard-scraper";
 
 const DATA_DIR = path.join(process.cwd(), "public", "data");
 const DEMO_MODE = false; // LIVE MODE — real Polymarket data
@@ -248,14 +249,12 @@ function scoreTrade(
   spread: number,
   liquidity: number
 ): DecisionData {
-  // Hard filters
-  if (spread > 0.08) {
-    return makeDecision(wallet, marketId, marketQuestion, "skip", 0.2, 0.9,
-      ["Spread too wide (>8%)"], [`Spread: ${(spread * 100).toFixed(1)}%`], 0.2, 0.3, 0.5);
-  }
-  if (liquidity < 300) {
-    return makeDecision(wallet, marketId, marketQuestion, "skip", 0.15, 0.9,
-      ["Liquidity too low (<$300)"], [`Liquidity: $${liquidity.toFixed(0)}`], 0.15, 0.2, 0.5);
+  // Hard filters — for real Polymarket binary markets (0-1 range)
+  // Spread is absolute (bestAsk - bestBid). Binary markets naturally have wide spreads.
+  // Filter by liquidity and activity instead.
+  if (liquidity < 50) { // $50 min liquidity
+    return makeDecision(wallet, marketId, marketQuestion, "skip", 0.1, 0.9,
+      ["Liquidity too low (<$50)"], [`Liquidity: $${liquidity.toFixed(0)}`], 0.1, 0.1, 0.5);
   }
 
   // Score components
@@ -265,8 +264,10 @@ function scoreTrade(
   const copyS = wallet.copyabilityScore;
   const catFit = 0.6; // placeholder
   const timingS = 1 - wallet.averageEntryTiming;
-  const spreadS = 1 - Math.min(spread / 0.08, 1);
-  const liqS = Math.min(liquidity / 2000, 1);
+  // Spread: in binary markets, score by how centered the price is (closer to 0.5 = better)
+  // Absolute spread near 1.0 means market is at extremes (0 or 1), harder to get fills
+  const spreadS = 1 - Math.min(spread, 1.0); // spread of 0 (tight) = score 1, spread of 1.0 = score 0
+  const liqS = Math.min(liquidity / 500, 1); // normalize against $500
   const thesisS = wallet.status === "track" ? 0.7 : 0.4;
 
   const totalScore =
@@ -349,13 +350,21 @@ async function main() {
 
   console.log(`[compute] Starting pipeline (demo=${DEMO_MODE}, deploy=${shouldDeploy})`);
 
-  // ── 1. Market Scanner (real Polymarket data) ──
-  console.log("[compute] 1/7 Scanning real Polymarket markets...");
-  const marketActivities = await scanRealMarkets(50);
-  const realWallets = generateWalletsFromMarkets(marketActivities, 500);
+  // ── 1. Leaderboard Scan (scraped real data + market scanner) ──
+  console.log("[compute] 1/7 Loading leaderboard data...");
+  const marketActivities = await scanRealMarkets(30); // fewer for speed
+
+  // Use scraped leaderboard as primary wallet source
+  const scrapedWallets = scrapedToWallets(LEADERBOARD_DATA);
+  console.log(`[compute]   ${scrapedWallets.length} REAL scraped traders from Polymarket leaderboard`);
+
+  // Supplement with market-generated wallets up to 500 total
+  const remaining = Math.max(0, 500 - scrapedWallets.length);
+  const marketWallets = remaining > 0 ? generateWalletsFromMarkets(marketActivities, remaining) : [];
+  const allWalletProfiles = [...scrapedWallets, ...marketWallets];
 
   // Convert to wallet scoring format
-  const wallets: WalletData[] = realWallets.map((w, i) => {
+  const wallets: WalletData[] = allWalletProfiles.map((w, i) => {
     const consistency = w.consistencyScore;
     const copyability = w.copyabilityScore;
     const ohwPenalty = (w.roi30d > 0.50 && w.tradeCount30d < 20) ? 0.35 :

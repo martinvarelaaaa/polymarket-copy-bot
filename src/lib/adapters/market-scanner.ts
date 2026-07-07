@@ -33,7 +33,8 @@ export interface OrderBook {
   tokenId: string;
   bestBid: number;
   bestAsk: number;
-  spread: number;
+  spread: number;     // absolute spread (bestAsk - bestBid)
+  spreadPct: number;  // percentage spread
   bidSize: number;
   askSize: number;
   midPrice: number;
@@ -82,9 +83,11 @@ export async function fetchOrderBook(tokenId: string): Promise<OrderBook | null>
     const bidSize = bids[0] ? parseFloat(bids[0].size) : 0;
     const askSize = asks[0] ? parseFloat(asks[0].size) : 0;
     const midPrice = (bestBid + bestAsk) / 2 || 0;
-    const spread = midPrice > 0 ? (bestAsk - bestBid) / midPrice : 1;
+    // Use absolute spread (not percentage) since % goes to infinity near 0/1
+    const absoluteSpread = bestAsk - bestBid;
+    const spreadPct = midPrice > 0 ? absoluteSpread / midPrice : 1;
 
-    return { tokenId, bestBid, bestAsk, spread, bidSize, askSize, midPrice };
+    return { tokenId, bestBid, bestAsk, spread: absoluteSpread, spreadPct, bidSize, askSize, midPrice };
   } catch {
     return null;
   }
