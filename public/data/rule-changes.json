@@ -1,5 +1,15 @@
 [
   {
+    "id": 1783483133573,
+    "oldVersion": 10,
+    "newVersion": 11,
+    "changedBy": "hermes-auto",
+    "reason": "Pérdidas mayores que ganancias — subiendo liquidez mínima requerida",
+    "evidenceSummary": "Avg Win: +$5.61 vs Avg Loss: $-5.69",
+    "expectedImprovement": "Filtrar mercados con poca liquidez debería reducir pérdidas grandes",
+    "createdAt": "2026-07-08T03:58:52.638Z"
+  },
+  {
     "id": 1783475871239,
     "oldVersion": 9,
     "newVersion": 10,
