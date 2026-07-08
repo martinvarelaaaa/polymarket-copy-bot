@@ -28,10 +28,10 @@
   },
   {
     "date": "2026-07-08",
-    "paperPnl": -120.54,
-    "totalPaperPnl": -120.3,
-    "winRate": 0.172,
-    "openPositions": 121,
+    "paperPnl": -147.95,
+    "totalPaperPnl": -148.79,
+    "winRate": 0.129,
+    "openPositions": 119,
     "newSignals": 300,
     "copiedSignals": 300,
     "watchedSignals": 0,
@@ -49,6 +49,6 @@
       "Pérdidas mayores que ganancias — subiendo liquidez mínima requerida",
       "PnL total negativo — subiendo threshold para seguir wallets (más selectivo)"
     ],
-    "summary": "Seguimiento: 393 wallets. 300 copiadas, 0 saltadas. 11 cambios de reglas totales."
+    "summary": "Seguimiento: 393 wallets. 300 copiadas, 0 saltadas. 12 cambios de reglas totales."
   }
 ]
