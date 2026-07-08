@@ -1,14 +1,14 @@
 {
   "initialCapital": 5000,
-  "totalEquity": 4891.27,
-  "totalPnl": -108.73,
-  "totalRealizedPnl": -108.75,
-  "winRate": 0.212,
-  "openPositions": 117,
-  "totalResolved": 33,
-  "trackingWallets": 411,
+  "totalEquity": 4879.7,
+  "totalPnl": -120.3,
+  "totalRealizedPnl": -120.54,
+  "winRate": 0.172,
+  "openPositions": 121,
+  "totalResolved": 29,
+  "trackingWallets": 393,
   "todaySignals": 300,
-  "activeRuleVersion": 11,
+  "activeRuleVersion": 12,
   "demoMode": false,
-  "lastUpdated": "2026-07-08T03:58:52.642Z"
+  "lastUpdated": "2026-07-08T05:59:55.274Z"
 }
