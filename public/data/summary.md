@@ -1,9 +1,9 @@
-🤖 **CopyBot** — jue, 9 jul., 02:09 p. m.
+🤖 **CopyBot** — vie, 10 jul., 09:01 a. m.
 
-💰 Capital: $5,000 | Equity: $4,909.54 | PnL: 🔴 $-90.46
-📊 Win Rate: 24.2% | Abiertos: 117 | Resueltos: 33
-👛 Siguiendo: 394/500 wallets
-📡 Nuevas: 597 | 📋 Copiar: 597 | 👀 Observar: 0 | ⏭️ Saltar: 0
+💰 Capital: $5,000 | Equity: $4,894.17 | PnL: 🔴 $-105.83
+📊 Win Rate: 22.6% | Abiertos: 119 | Resueltos: 31
+👛 Siguiendo: 411/500 wallets
+📡 Nuevas: 604 | 📋 Copiar: 604 | 👀 Observar: 0 | ⏭️ Saltar: 0
 
 ⚡ **Cambios de Reglas** (v13):
   → Pérdidas mayores que ganancias — subiendo liquidez mínima requerida
@@ -12,7 +12,7 @@
   → Pérdidas mayores que ganancias — subiendo liquidez mínima requerida
   → PnL total negativo — subiendo threshold para seguir wallets (más selectivo)
 
-✅ **Resueltos este ciclo:** 33 trades (8 ganados, 25 perdidos)
-  🏆 +$7.11 | 🔻 $-12.54
+✅ **Resueltos este ciclo:** 31 trades (7 ganados, 24 perdidos)
+  🏆 +$9.50 | 🔻 $-11.16
 
 🔗 [Dashboard](https://polymarket-copy-bot-phi.vercel.app)
