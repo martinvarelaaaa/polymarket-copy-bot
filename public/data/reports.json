@@ -105,5 +105,33 @@
       "PnL total negativo — subiendo threshold para seguir wallets (más selectivo)"
     ],
     "summary": "Seguimiento: 411 wallets. 300 copiadas, 0 saltadas. 12 cambios de reglas totales."
+  },
+  {
+    "date": "2026-07-11",
+    "paperPnl": -65.76,
+    "totalPaperPnl": -64.17,
+    "winRate": 0.227,
+    "openPositions": 128,
+    "newSignals": 300,
+    "copiedSignals": 300,
+    "watchedSignals": 0,
+    "skippedSignals": 0,
+    "bestWallets": [
+      "Theo4",
+      "Fredi9999",
+      "swisstony"
+    ],
+    "worstWallets": [
+      "AITrader_443",
+      "OtherTrader_139"
+    ],
+    "ruleChanges": [
+      "Pérdidas mayores que ganancias — subiendo liquidez mínima requerida",
+      "PnL total negativo — subiendo threshold para seguir wallets (más selectivo)",
+      "Win rate bajo — bajando threshold de paper_copy para capturar más señales",
+      "Pérdidas mayores que ganancias — subiendo liquidez mínima requerida",
+      "PnL total negativo — subiendo threshold para seguir wallets (más selectivo)"
+    ],
+    "summary": "Seguimiento: 376 wallets. 300 copiadas, 0 saltadas. 12 cambios de reglas totales."
   }
 ]
